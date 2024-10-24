@@ -8,15 +8,12 @@ const CartContainer = ({ state, dispatch }) => {
     return acc
   }, 0)
 
-  console.log(totalBill)
-
   // Business Logic: We are using one level of props & managing app logic in Parent only
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' })
   }
 
   const deleteItem = id => {
-    console.log('deleteItem invoked!')
     dispatch({ type: 'REMOVE_ITEM', payload: { id } })
   }
 

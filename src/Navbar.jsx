@@ -1,9 +1,11 @@
 import { useReducer } from 'react'
 import { FaCartPlus } from 'react-icons/fa'
-import reducer from './reducer'
-import { defaultState } from './defaultstate'
+import { useGlobalContext } from './context'
 
 const Navbar = ({ state }) => {
+  const { greeting } = useGlobalContext()
+
+  console.log(greeting)
   const cartItems = state.cartArray.reduce((acc, item) => {
     return (acc = acc + item.amount)
   }, 0)
