@@ -19,12 +19,10 @@ const CartContainer = () => {
   }
 
   const increaseCount = id => {
-    console.log('increase count')
-    dispatch({ type: 'INCREASE_COUNT' })
+    dispatch({ type: 'INCREASE_COUNT', payload: { id } })
   }
   const decreaseCount = id => {
-    console.log('decrease count')
-    dispatch({ type: 'DECREASE_COUNT' })
+    dispatch({ type: 'DECREASE_COUNT', payload: { id } })
   }
 
   if (state.cartArray.length === 0) {

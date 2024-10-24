@@ -11,7 +11,14 @@ const reducer = (state, action) => {
   }
 
   if (action.type === INCREASE_COUNT) {
-    return state
+    const updatedState = state.cartArray.map(item => {
+      if (item.id === action.payload.id) {
+        return { ...item, amount: item.amount + 1 }
+      }
+      return item
+    })
+
+    return { ...state, cartArray: updatedState }
   }
 
   if (action.type === DECREASE_COUNT) {
