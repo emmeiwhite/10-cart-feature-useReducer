@@ -8,7 +8,6 @@ const CartContainer = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 
   // Business Logic
-
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' })
   }
@@ -17,6 +16,13 @@ const CartContainer = () => {
   const deleteItem = id => {
     console.log('deleteItem invoked!')
     dispatch({ type: 'REMOVE_ITEM', payload: { id } })
+  }
+
+  const increaseCount = () => {
+    dispatch({ type: 'INCREASE_COUNT' })
+  }
+  const decreaseCount = () => {
+    dispatch({ type: 'DECREASE_COUNT' })
   }
 
   if (state.cartArray.length === 0) {
@@ -45,6 +51,8 @@ const CartContainer = () => {
               key={cartItem.id}
               {...cartItem}
               deleteItem={deleteItem}
+              increaseCount={increaseCount}
+              decreaseCount={decreaseCount}
             />
           )
         })}
