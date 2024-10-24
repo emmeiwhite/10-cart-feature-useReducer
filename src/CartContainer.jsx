@@ -7,12 +7,20 @@ import reducer from './reducer'
 const CartContainer = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 
-  // Business Logic
+  // Derived State: total:
+
+  let totalBill = state.cartArray.reduce((acc, item) => {
+    let total = acc + item.price * item.amount
+    return total
+  }, 0)
+
+  console.log(totalBill)
+
+  // Business Logic: We are using one level of props & managing app logic in Parent only
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' })
   }
 
-  // We can add one level of passing props from CartContainer to CartItem & connect our CartContainer with store - - - This is the thought process!
   const deleteItem = id => {
     console.log('deleteItem invoked!')
     dispatch({ type: 'REMOVE_ITEM', payload: { id } })
@@ -62,7 +70,7 @@ const CartContainer = () => {
         <hr />
         <div>
           <h5 className="cart-total">
-            <span>total</span> <span>$10</span>
+            <span>total</span> <span>${totalBill.toFixed(2)}</span>
           </h5>
         </div>
         <button

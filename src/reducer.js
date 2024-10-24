@@ -24,7 +24,7 @@ const reducer = (state, action) => {
   if (action.type === DECREASE_COUNT) {
     const updatedState = state.cartArray.map(item => {
       if (item.id === action.payload.id) {
-        return { ...item, amount: item.amount > 1 ? item.amount - 1 : 1 }
+        return { ...item, amount: item.amount > 0 ? item.amount - 1 : 0 }
       }
       return item
     })
