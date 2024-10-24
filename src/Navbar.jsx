@@ -1,7 +1,13 @@
 import { useReducer } from 'react'
 import { FaCartPlus } from 'react-icons/fa'
+import reducer from './reducer'
+import { defaultState } from './defaultstate'
 
-const Navbar = () => {
+const Navbar = ({ state }) => {
+  const cartItems = state.cartArray.reduce((acc, item) => {
+    return (acc = acc + item.amount)
+  }, 0)
+
   useReducer()
   return (
     <nav>
@@ -10,7 +16,7 @@ const Navbar = () => {
         <div className="nav-container">
           <FaCartPlus className="cart-icon" />
           <div className="amount-container">
-            <p className="total-amount">2</p>
+            <p className="total-amount">{cartItems}</p>
           </div>
         </div>
       </div>

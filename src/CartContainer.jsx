@@ -1,17 +1,12 @@
 import { useReducer } from 'react'
 import CartItem from './CartItem'
 
-import { defaultState } from './defaultstate'
-import reducer from './reducer'
-
 const CartContainer = () => {
-  const [state, dispatch] = useReducer(reducer, defaultState)
-
   // Derived State: total:
 
   let totalBill = state.cartArray.reduce((acc, item) => {
-    let total = acc + item.price * item.amount
-    return total
+    acc = acc + item.price * item.amount
+    return acc
   }, 0)
 
   console.log(totalBill)
