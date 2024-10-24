@@ -5,7 +5,7 @@ const AppContext = createContext()
 
 const initialState = {
   loading: false,
-  cart: []
+  cart: [{ id: 123, title: 'Samsung Galaxy' }]
 }
 
 export const AppProvider = ({ children }) => {
