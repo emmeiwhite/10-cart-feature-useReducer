@@ -1,13 +1,20 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useReducer } from 'react'
+import reducer from './reducer'
 
 const AppContext = createContext()
 
-export const AppProvider = ({ children }) => {
-  const greeting = 'Hello World!'
-
-  return <AppContext.Provider value={{ greeting }}>{children}</AppContext.Provider>
+const initialState = {
+  loading: false,
+  cart: []
 }
 
+export const AppProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  return <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+}
+
+// Custom Hook
 export const useGlobalContext = () => {
   return useContext(AppContext)
 }

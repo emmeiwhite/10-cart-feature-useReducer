@@ -3,9 +3,9 @@ import { FaCartPlus } from 'react-icons/fa'
 import { useGlobalContext } from './context'
 
 const Navbar = ({ state }) => {
-  const { greeting } = useGlobalContext()
+  const { loading } = useGlobalContext()
 
-  console.log(greeting)
+  console.log(loading)
   const cartItems = state.cartArray.reduce((acc, item) => {
     return (acc = acc + item.amount)
   }, 0)
