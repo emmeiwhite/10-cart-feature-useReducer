@@ -1,3 +1,4 @@
 const CLEAR_CART = 'CLEAR_CART'
+const REMOVE_ITEM = 'REMOVE_ITEM'
 
-export { CLEAR_CART }
+export { CLEAR_CART, REMOVE_ITEM }

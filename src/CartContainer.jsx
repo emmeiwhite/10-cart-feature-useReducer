@@ -13,6 +13,12 @@ const CartContainer = () => {
     dispatch({ type: 'CLEAR_CART' })
   }
 
+  // We can add one level of passing props from CartContainer to CartItem & connect our CartContainer with store - - - This is the thought process!
+  const deleteItem = id => {
+    console.log('deleteItem invoked!')
+    dispatch({ type: 'REMOVE_ITEM', payload: { id } })
+  }
+
   if (state.cartArray.length === 0) {
     return (
       <section className="cart">
@@ -38,6 +44,7 @@ const CartContainer = () => {
             <CartItem
               key={cartItem.id}
               {...cartItem}
+              deleteItem={deleteItem}
             />
           )
         })}
