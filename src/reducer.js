@@ -22,7 +22,14 @@ const reducer = (state, action) => {
   }
 
   if (action.type === DECREASE_COUNT) {
-    return state
+    const updatedState = state.cartArray.map(item => {
+      if (item.id === action.payload.id) {
+        return { ...item, amount: item.amount > 1 ? item.amount - 1 : 1 }
+      }
+      return item
+    })
+
+    return { ...state, cartArray: updatedState }
   }
 
   throw new Error('No Action Matches')
