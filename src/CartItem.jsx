@@ -1,5 +1,5 @@
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
-const CartItem = ({ id, img, title, price, amount, deleteItem }) => {
+const CartItem = ({ id, img, title, price, amount, deleteItem, increaseCount, decreaseCount }) => {
   return (
     <article className="cart-item">
       <img
@@ -21,7 +21,7 @@ const CartItem = ({ id, img, title, price, amount, deleteItem }) => {
         {/* increase amount */}
         <button
           className="amount-btn"
-          onClick={() => console.log('increase')}
+          onClick={() => increaseCount(id)}
         >
           <FaChevronUp className="amount-icon" />
         </button>
@@ -30,7 +30,7 @@ const CartItem = ({ id, img, title, price, amount, deleteItem }) => {
         {/* decrease amount */}
         <button
           className="amount-btn"
-          onClick={() => console.log('decrease')}
+          onClick={() => decreaseCount(id)}
         >
           <FaChevronDown className="amount-icon" />
         </button>

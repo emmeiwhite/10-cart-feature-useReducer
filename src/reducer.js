@@ -1,4 +1,4 @@
-import { CLEAR_CART, REMOVE_ITEM } from './actions'
+import { CLEAR_CART, REMOVE_ITEM, INCREASE_COUNT, DECREASE_COUNT } from './actions'
 
 const reducer = (state, action) => {
   if (action.type === CLEAR_CART) {
@@ -6,9 +6,16 @@ const reducer = (state, action) => {
   }
 
   if (action.type === REMOVE_ITEM) {
-    console.log('remove_item')
     const filteredState = state.cartArray.filter(item => item.id !== action.payload.id)
     return { ...state, cartArray: filteredState }
+  }
+
+  if (action.type === INCREASE_COUNT) {
+    console.log('increase count')
+  }
+
+  if (action.type === DECREASE_COUNT) {
+    console.log('decrease count')
   }
 
   throw new Error('No Action Matches')
