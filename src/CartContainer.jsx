@@ -5,10 +5,17 @@ import cartItems from './data'
 import { CLEAR_CART } from './actions'
 
 const defaultState = {
-  cartArray: [...cartItems]
+  cartArray: [...cartItems],
+  isLoading: false
 }
 
-const reducer = () => {}
+const reducer = (state, action) => {
+  if (action.type === CLEAR_CART) {
+    return { ...state, cartArray: [] }
+  }
+
+  throw new Error('No Action Matches')
+}
 const CartContainer = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 
