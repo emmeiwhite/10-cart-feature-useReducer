@@ -18,10 +18,12 @@ const CartContainer = () => {
     dispatch({ type: 'REMOVE_ITEM', payload: { id } })
   }
 
-  const increaseCount = () => {
+  const increaseCount = id => {
+    console.log('increase count')
     dispatch({ type: 'INCREASE_COUNT' })
   }
-  const decreaseCount = () => {
+  const decreaseCount = id => {
+    console.log('decrease count')
     dispatch({ type: 'DECREASE_COUNT' })
   }
 

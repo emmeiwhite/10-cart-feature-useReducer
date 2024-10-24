@@ -11,11 +11,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === INCREASE_COUNT) {
-    console.log('increase count')
+    return state
   }
 
   if (action.type === DECREASE_COUNT) {
-    console.log('decrease count')
+    return state
   }
 
   throw new Error('No Action Matches')
