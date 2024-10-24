@@ -1,7 +1,6 @@
-import { useReducer } from 'react'
 import CartItem from './CartItem'
 
-const CartContainer = () => {
+const CartContainer = ({ state, dispatch }) => {
   // Derived State: total:
 
   let totalBill = state.cartArray.reduce((acc, item) => {

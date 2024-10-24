@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import CartContainer from './CartContainer'
 import { defaultState } from './defaultstate'
 import reducer from './reducer'
+import { useReducer } from 'react'
 
 function App() {
   const [state, dispatch] = useReducer(reducer, defaultState)
