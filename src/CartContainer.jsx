@@ -1,21 +1,9 @@
 import { useReducer } from 'react'
 import CartItem from './CartItem'
-import cartItems from './data'
 
-import { CLEAR_CART } from './actions'
+import { defaultState } from './defaultstate'
+import reducer from './reducer'
 
-const defaultState = {
-  cartArray: [...cartItems],
-  isLoading: false
-}
-
-const reducer = (state, action) => {
-  if (action.type === CLEAR_CART) {
-    return { ...state, cartArray: [] }
-  }
-
-  throw new Error('No Action Matches')
-}
 const CartContainer = () => {
   const [state, dispatch] = useReducer(reducer, defaultState)
 

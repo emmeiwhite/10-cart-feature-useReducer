@@ -1,5 +1,8 @@
+import { useReducer } from 'react'
 import { FaCartPlus } from 'react-icons/fa'
+
 const Navbar = () => {
+  useReducer()
   return (
     <nav>
       <div className="nav-center">
