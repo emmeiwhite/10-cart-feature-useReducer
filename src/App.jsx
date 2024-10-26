@@ -1,16 +1,21 @@
 // components
 import Navbar from './Navbar'
 import CartContainer from './CartContainer'
-import { defaultState } from './defaultstate'
-import reducer from './reducer'
-import { useReducer } from 'react'
 import { useGlobalContext } from './context'
 
-const url = 'https://www.course-api.com/react-useReducer-cart-project'
-
 function App() {
-  const { state } = useGlobalContext()
+  const { loading } = useGlobalContext()
 
+  if (loading) {
+    return (
+      <main>
+        <div
+          className="loading"
+          style={{ marginTop: '3rem' }}
+        ></div>
+      </main>
+    )
+  }
   return (
     <main>
       <Navbar />

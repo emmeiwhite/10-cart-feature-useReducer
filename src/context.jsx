@@ -1,31 +1,10 @@
-import { createContext, useContext, useReducer } from 'react'
+import { createContext, useContext, useReducer, useEffect } from 'react'
 import reducer from './reducer'
 import getTotal from './utils.js'
 import cartItems from './data'
-/* Map() Data-Structure:
-const arr = ['a', 'b', 'c']
-const iterator = arr.entries()
-console.log('Iterator:')
-console.log(iterator)
 
+const url = 'https://www.course-api.com/react-useReducer-cart-project'
 
-const arr =['a','b','c','d'];
-const iterator = arr.entries()
-
-// for(let [index,value] of iterator){
-//   console.log(index,value);
-// }
-
-
-const backArr = Array.from(iterator)
-console.log(backArr);
-
-const originalArray = backArr.map(item=>item[1])
-console.log(originalArray)
-*/
-
-// Using a map data-structure
-// const cartMap = new Map() Card is empty
 const cartMap = new Map(cartItems.map(item => [item.id, item]))
 
 const AppContext = createContext()
@@ -57,6 +36,19 @@ export const AppProvider = ({ children }) => {
   const decreaseCount = id => {
     dispatch({ type: 'DECREASE_COUNT', payload: { id } })
   }
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url)
+      const cart = await response.json()
+      console.log(cart)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <AppContext.Provider
