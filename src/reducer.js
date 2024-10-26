@@ -1,10 +1,22 @@
-import { CLEAR_CART, REMOVE_ITEM, INCREASE_COUNT, DECREASE_COUNT, LOADING } from './actions'
+import {
+  CLEAR_CART,
+  REMOVE_ITEM,
+  INCREASE_COUNT,
+  DECREASE_COUNT,
+  LOADING,
+  DISPLAY_ITEMS
+} from './actions'
 
 const reducer = (state, action) => {
   if (action.type === LOADING) {
     return { ...state, loading: true }
   }
 
+  if (action.type === DISPLAY_ITEMS) {
+    const cartItems = new Map(action.payload.cart.map(item => [item.id, item]))
+    console.log(action.type.payload)
+    return { ...state, loading: false, cart: cartItems }
+  }
   if (action.type === CLEAR_CART) {
     return { ...state, cart: new Map() }
   }

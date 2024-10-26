@@ -25,7 +25,6 @@ export const AppProvider = ({ children }) => {
   }
 
   const deleteItem = id => {
-    console.log(id)
     dispatch({ type: 'REMOVE_ITEM', payload: { id } })
   }
 
@@ -42,10 +41,8 @@ export const AppProvider = ({ children }) => {
     try {
       const response = await fetch(url)
       const cart = await response.json()
-      console.log(cart)
-    } catch (error) {
-      console.log(error)
-    }
+      dispatch({ type: 'DISPLAY_ITEMS', payload: { cart } })
+    } catch (error) {}
   }
   useEffect(() => {
     fetchData()
