@@ -2,6 +2,7 @@ import { createContext, useContext, useReducer } from 'react'
 import reducer from './reducer'
 
 import cartItems from './data'
+import getTotal from './utils'
 
 /* Map() Data-Structure:
 const arr = ['a', 'b', 'c']
@@ -39,6 +40,8 @@ const initialState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  const { totalItems, totalCost } = getTotal(state.cart)
+
   // Business Logic: We are using one level of props & managing app logic in Parent only
   const clearCart = () => {
     dispatch({ type: 'CLEAR_CART' })
@@ -58,7 +61,9 @@ export const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ ...state, clearCart, deleteItem, increaseCount, decreaseCount }}>
+    <AppContext.Provider
+      value={{ ...state, clearCart, deleteItem, increaseCount, decreaseCount, totalItems }}
+    >
       {children}
     </AppContext.Provider>
   )

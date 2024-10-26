@@ -3,15 +3,7 @@ import { FaCartPlus } from 'react-icons/fa'
 import { useGlobalContext } from './context'
 
 const Navbar = () => {
-  const { cart } = useGlobalContext()
-  // Note: cart is a Map type, we must change it into an Array first
-  const currentCart = Array.from(cart.entries())
-
-  const cartItems =
-    currentCart.reduce((acc, item) => {
-      const [id, cartItem] = item
-      return (acc = acc + cartItem.amount)
-    }, 0) || []
+  const { totalItems } = useGlobalContext()
 
   useReducer()
   return (
@@ -21,7 +13,7 @@ const Navbar = () => {
         <div className="nav-container">
           <FaCartPlus className="cart-icon" />
           <div className="amount-container">
-            <p className="total-amount">{cartItems}</p>
+            <p className="total-amount">{totalItems}</p>
           </div>
         </div>
       </div>
