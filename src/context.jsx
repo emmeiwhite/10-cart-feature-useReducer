@@ -39,7 +39,12 @@ const initialState = {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  return <AppContext.Provider value={{ ...state }}>{children}</AppContext.Provider>
+  // Business Logic: We are using one level of props & managing app logic in Parent only
+  const clearCart = () => {
+    dispatch({ type: 'CLEAR_CART' })
+  }
+
+  return <AppContext.Provider value={{ ...state, clearCart }}>{children}</AppContext.Provider>
 }
 
 // Custom Hook

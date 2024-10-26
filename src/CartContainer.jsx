@@ -2,7 +2,7 @@ import CartItem from './CartItem'
 import { useGlobalContext } from './context'
 
 const CartContainer = ({ dispatch }) => {
-  const { cart } = useGlobalContext()
+  const { cart, clearCart } = useGlobalContext()
 
   const cartArray = Array.from(cart.entries())
 
@@ -12,11 +12,6 @@ const CartContainer = ({ dispatch }) => {
     return acc
   }, 0)
 
-  // Business Logic: We are using one level of props & managing app logic in Parent only
-  const clearCart = () => {
-    dispatch({ type: 'CLEAR_CART' })
-  }
-
   const deleteItem = id => {
     dispatch({ type: 'REMOVE_ITEM', payload: { id } })
   }
@@ -24,6 +19,7 @@ const CartContainer = ({ dispatch }) => {
   const increaseCount = id => {
     dispatch({ type: 'INCREASE_COUNT', payload: { id } })
   }
+
   const decreaseCount = id => {
     dispatch({ type: 'DECREASE_COUNT', payload: { id } })
   }
@@ -50,7 +46,6 @@ const CartContainer = ({ dispatch }) => {
       <div>
         {cartArray.map(arr => {
           const [id, cartItem] = arr
-          console.log(cartItem)
           return (
             <CartItem
               key={id}
