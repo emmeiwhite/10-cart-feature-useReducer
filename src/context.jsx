@@ -38,6 +38,7 @@ export const AppProvider = ({ children }) => {
   }
 
   const fetchData = async () => {
+    dispatch({ type: 'LOADING' })
     try {
       const response = await fetch(url)
       const cart = await response.json()
