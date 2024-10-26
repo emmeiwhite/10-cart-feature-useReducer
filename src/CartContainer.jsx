@@ -1,9 +1,12 @@
 import CartItem from './CartItem'
+import { useGlobalContext } from './context'
 
-const CartContainer = ({ state, dispatch }) => {
-  // Derived State: total:
+const CartContainer = ({ dispatch }) => {
+  const { cart } = useGlobalContext()
 
-  let totalBill = state.cartArray.reduce((acc, item) => {
+  const cartArray = Array.from(cart.entries()).map(arr => arr[1])
+
+  let totalBill = cartArray.reduce((acc, item) => {
     acc = acc + item.price * item.amount
     return acc
   }, 0)
@@ -24,7 +27,7 @@ const CartContainer = ({ state, dispatch }) => {
     dispatch({ type: 'DECREASE_COUNT', payload: { id } })
   }
 
-  if (state.cartArray.length === 0) {
+  if (cartArray.length === 0) {
     return (
       <section className="cart">
         {/* cart header */}
@@ -44,7 +47,7 @@ const CartContainer = ({ state, dispatch }) => {
       </header>
       {/* cart items */}
       <div>
-        {state.cartArray.map(cartItem => {
+        {cartArray.map(cartItem => {
           return (
             <CartItem
               key={cartItem.id}
