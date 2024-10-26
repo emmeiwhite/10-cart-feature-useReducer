@@ -6,7 +6,6 @@ const reducer = (state, action) => {
   }
 
   if (action.type === REMOVE_ITEM) {
-    console.log(action.type)
     const copyOfMap = new Map(state.cart)
     // const filteredState = state.cart.delete(action.payload.id)
     copyOfMap.delete(action.payload.id)
@@ -14,24 +13,25 @@ const reducer = (state, action) => {
   }
 
   if (action.type === INCREASE_COUNT) {
-    const updatedState = state.cart.map(item => {
-      if (item.id === action.payload.id) {
-        return { ...item, amount: item.amount + 1 }
-      }
-      return item
-    })
-    return { ...state, cart: updatedState }
+    const newCart = new Map(state.cart)
+
+    const itemId = action.payload.id
+    const item = newCart.get(itemId)
+    const newItem = { ...item, amount: item.amount + 1 }
+
+    newCart.set(itemId, newItem)
+    return { ...state, cart: newCart }
   }
 
   if (action.type === DECREASE_COUNT) {
-    const updatedState = state.cart.map(item => {
-      if (item.id === action.payload.id) {
-        return { ...item, amount: item.amount > 0 ? item.amount - 1 : 0 }
-      }
-      return item
-    })
+    const newCart = new Map(state.cart)
 
-    return { ...state, cart: updatedState }
+    const itemId = action.payload.id
+    const item = newCart.get(itemId)
+    const newItem = { ...item, amount: item.amount > 0 ? item.amount - 1 : 0 }
+
+    newCart.set(itemId, newItem)
+    return { ...state, cart: newCart }
   }
 
   throw new Error(`No Matching Action Type: ${action.type}`)
