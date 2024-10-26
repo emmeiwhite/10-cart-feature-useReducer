@@ -4,10 +4,11 @@ import { useGlobalContext } from './context'
 const CartContainer = ({ dispatch }) => {
   const { cart } = useGlobalContext()
 
-  const cartArray = Array.from(cart.entries()).map(arr => arr[1])
+  const cartArray = Array.from(cart.entries())
 
   let totalBill = cartArray.reduce((acc, item) => {
-    acc = acc + item.price * item.amount
+    const [id, cartItem] = item
+    acc = acc + cartItem.price * cartItem.amount
     return acc
   }, 0)
 
@@ -47,10 +48,12 @@ const CartContainer = ({ dispatch }) => {
       </header>
       {/* cart items */}
       <div>
-        {cartArray.map(cartItem => {
+        {cartArray.map(arr => {
+          const [id, cartItem] = arr
+          console.log(cartItem)
           return (
             <CartItem
-              key={cartItem.id}
+              key={id}
               {...cartItem}
               deleteItem={deleteItem}
               increaseCount={increaseCount}

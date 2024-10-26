@@ -3,13 +3,7 @@ import reducer from './reducer'
 
 import cartItems from './data'
 
-// Using a map data-structure
-const cartMap = cartItems.map(item => [item.id, item])
-const cart = new Map(cartMap)
-
-// console.log('The cart data structure is:')
-// console.log(cart)
-/*
+/* Map() Data-Structure:
 const arr = ['a', 'b', 'c']
 const iterator = arr.entries()
 console.log('Iterator:')
@@ -31,11 +25,15 @@ const originalArray = backArr.map(item=>item[1])
 console.log(originalArray)
 */
 
+// Using a map data-structure
+// const cartMap = new Map() Card is empty
+const cartMap = new Map(cartItems.map(item => [item.id, item]))
+
 const AppContext = createContext()
 
 const initialState = {
   loading: false,
-  cart: []
+  cart: cartMap
 }
 
 export const AppProvider = ({ children }) => {

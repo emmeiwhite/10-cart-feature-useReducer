@@ -5,7 +5,6 @@ import { useGlobalContext } from './context'
 const Navbar = ({ state }) => {
   const { loading } = useGlobalContext()
 
-  console.log(loading)
   const cartItems = state.cartArray.reduce((acc, item) => {
     return (acc = acc + item.amount)
   }, 0)
