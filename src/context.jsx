@@ -1,9 +1,7 @@
 import { createContext, useContext, useReducer } from 'react'
 import reducer from './reducer'
-
+import getTotal from './utils.js'
 import cartItems from './data'
-import getTotal from './utils'
-
 /* Map() Data-Structure:
 const arr = ['a', 'b', 'c']
 const iterator = arr.entries()
@@ -62,7 +60,15 @@ export const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ ...state, clearCart, deleteItem, increaseCount, decreaseCount, totalItems }}
+      value={{
+        ...state,
+        clearCart,
+        deleteItem,
+        increaseCount,
+        decreaseCount,
+        totalItems,
+        totalCost
+      }}
     >
       {children}
     </AppContext.Provider>
