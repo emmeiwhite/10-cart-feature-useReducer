@@ -7,8 +7,8 @@ export default function getTotal(cart) {
     (acc, obj) => {
       console.log(obj)
       const { amount, price } = obj
-      acc.totalCost += parseInt(amount) * parseInt(price)
-      acc.totalItems += parseInt(amount)
+      acc.totalCost += Number(amount) * Number(price)
+      acc.totalItems += Number(amount)
       return acc
     },
     { totalCost: 0, totalItems: 0 }
