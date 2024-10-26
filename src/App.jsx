@@ -4,16 +4,17 @@ import CartContainer from './CartContainer'
 import { defaultState } from './defaultstate'
 import reducer from './reducer'
 import { useReducer } from 'react'
+import { useGlobalContext } from './context'
+
+const url = 'https://www.course-api.com/react-useReducer-cart-project'
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, defaultState)
+  const { state } = useGlobalContext()
+
   return (
     <main>
-      <Navbar state={state} />
-      <CartContainer
-        state={state}
-        dispatch={dispatch}
-      />
+      <Navbar />
+      <CartContainer />
     </main>
   )
 }
