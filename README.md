@@ -160,3 +160,13 @@ console.log(cartArray)
 //   [2, { id: 2, name: 'second', price: 20 }]
 // ]
 ```
+
+/\_ 7:10 am:
+Question-1: How to turn an array into a Map data structure?
+Answer-1: use JS map() method to turn each array item into an array [item.id, item],
+then pass the final result into Map() constructor.
+new Map(cartItems)
+
+Question-2: And how to convert a Map() into an array.
+Answer-2: We simply do Array.from(cart.entries())
+\_/
