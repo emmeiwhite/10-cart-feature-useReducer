@@ -6,8 +6,11 @@ const reducer = (state, action) => {
   }
 
   if (action.type === REMOVE_ITEM) {
-    const filteredState = state.cart.filter(item => item.id !== action.payload.id)
-    return { ...state, cart: filteredState }
+    console.log(action.type)
+    const copyOfMap = new Map(state.cart)
+    // const filteredState = state.cart.delete(action.payload.id)
+    copyOfMap.delete(action.payload.id)
+    return { ...state, cart: copyOfMap }
   }
 
   if (action.type === INCREASE_COUNT) {

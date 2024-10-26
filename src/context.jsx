@@ -44,7 +44,24 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: 'CLEAR_CART' })
   }
 
-  return <AppContext.Provider value={{ ...state, clearCart }}>{children}</AppContext.Provider>
+  const deleteItem = id => {
+    console.log(id)
+    dispatch({ type: 'REMOVE_ITEM', payload: { id } })
+  }
+
+  const increaseCount = id => {
+    dispatch({ type: 'INCREASE_COUNT', payload: { id } })
+  }
+
+  const decreaseCount = id => {
+    dispatch({ type: 'DECREASE_COUNT', payload: { id } })
+  }
+
+  return (
+    <AppContext.Provider value={{ ...state, clearCart, deleteItem }}>
+      {children}
+    </AppContext.Provider>
+  )
 }
 
 // Custom Hook

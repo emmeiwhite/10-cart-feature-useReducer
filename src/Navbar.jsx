@@ -7,10 +7,11 @@ const Navbar = () => {
   // Note: cart is a Map type, we must change it into an Array first
   const currentCart = Array.from(cart.entries())
 
-  const cartItems = currentCart.reduce((acc, item) => {
-    const [id, cartItem] = item
-    return (acc = acc + cartItem.amount)
-  }, 0)
+  const cartItems =
+    currentCart.reduce((acc, item) => {
+      const [id, cartItem] = item
+      return (acc = acc + cartItem.amount)
+    }, 0) || []
 
   useReducer()
   return (

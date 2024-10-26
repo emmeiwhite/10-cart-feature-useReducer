@@ -12,18 +12,6 @@ const CartContainer = ({ dispatch }) => {
     return acc
   }, 0)
 
-  const deleteItem = id => {
-    dispatch({ type: 'REMOVE_ITEM', payload: { id } })
-  }
-
-  const increaseCount = id => {
-    dispatch({ type: 'INCREASE_COUNT', payload: { id } })
-  }
-
-  const decreaseCount = id => {
-    dispatch({ type: 'DECREASE_COUNT', payload: { id } })
-  }
-
   if (cartArray.length === 0) {
     return (
       <section className="cart">
@@ -50,9 +38,6 @@ const CartContainer = ({ dispatch }) => {
             <CartItem
               key={id}
               {...cartItem}
-              deleteItem={deleteItem}
-              increaseCount={increaseCount}
-              decreaseCount={decreaseCount}
             />
           )
         })}
