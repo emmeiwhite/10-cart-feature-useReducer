@@ -28,7 +28,13 @@ const reducer = (state, action) => {
 
     const itemId = action.payload.id
     const item = newCart.get(itemId)
-    const newItem = { ...item, amount: item.amount > 0 ? item.amount - 1 : 0 }
+
+    if (item.amount === 1) {
+      newCart.delete(itemId)
+      return { ...state, cart: newCart }
+    }
+
+    const newItem = { ...item, amount: item.amount - 1 }
 
     newCart.set(itemId, newItem)
     return { ...state, cart: newCart }
